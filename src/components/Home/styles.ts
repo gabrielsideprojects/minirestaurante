@@ -28,4 +28,5 @@ export const HomeRestaurantList = styled.View`
   border-color: ${colors.white};
   background-color: ${colors.white};
   margin-top: -20px;
+  padding: 30px;
 `;
