@@ -8,7 +8,7 @@ import {
 import Images from './../../Utils/Images';
 export interface SearchInputProps extends PressableProps {
   isInputEditable: boolean;
-  onChangeText: (text: string) => string;
+  onChangeText?: (text: string) => string;
 }
 const SearchInput: React.FC<SearchInputProps> = ({
   isInputEditable,
