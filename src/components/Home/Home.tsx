@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import {
   Container,
@@ -11,19 +11,19 @@ import {
 import Images from '../../Utils/Images';
 import SearchInput from './../SearchInput/SearchInput';
 import RestaurantItem from './../RestaurantItem/RestaurantItem';
-
-interface restaurante {
-  text: string;
-}
-
+import Requests from '../../Utils/Requests';
+import {IRestaurantData} from './../../Interfaces';
 const Home: React.FC = () => {
-  const arr: restaurante[] = [
-    {text: 'Mamma mia'},
-    {text: 'Teste'},
-    {text: 'Teste'},
-    {text: 'Teste'},
-    {text: 'Teste'},
-  ];
+  const [restaurantList, setRestaurantsList] = useState<IRestaurantData>();
+
+  const obtainRestaurantsList = async () => {
+    const restaurantObtained = await Requests.obtainRestaurants(1);
+    setRestaurantsList(restaurantObtained);
+  };
+
+  useEffect(() => {
+    obtainRestaurantsList();
+  }, []);
   return (
     <FlatList
       bounces={false}
@@ -46,10 +46,12 @@ const Home: React.FC = () => {
           </HomeRestaurantList>
         </Container>
       )}
-      data={arr}
+      data={restaurantList}
       columnWrapperStyle={{justifyContent: 'space-around'}}
       ItemSeparatorComponent={() => <View style={{marginVertical: 10}} />}
-      renderItem={({item}) => <RestaurantItem text={item.text} />}
+      renderItem={({item}) => (
+        <RestaurantItem imageSource={item.image} text={item.name} />
+      )}
     />
   );
 };

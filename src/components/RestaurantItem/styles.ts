@@ -4,14 +4,21 @@ import {normalizeWidPx} from './../../Utils/FnUtils';
 export const Container = styled.Pressable`
   width: ${normalizeWidPx(140)};
   height: 140px;
-  border-width: 1px;
-  border-radius: 10px;
   justify-content: flex-end;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  border-radius: 10px;
+  border-color: transparent;
 `;
-
+export const RestaurantImage = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+`;
 export const RestaurantNameText = styled.Text`
-  color: ${colors.black};
-  font-size: 12px;
+  color: ${colors.white};
+  font-size: 14px;
+  font-weight: bold;
 `;
